@@ -1,8 +1,11 @@
 package com.coursework.courseprojectfxeng.fxControllers;
 
+import com.coursework.courseprojectfxeng.hibernate.HibernateShop;
 import com.coursework.courseprojectfxeng.model.Plant;
 import com.coursework.courseprojectfxeng.model.Product;
 import com.coursework.courseprojectfxeng.model.SeedType;
+import com.coursework.courseprojectfxeng.model.User;
+import jakarta.persistence.EntityManagerFactory;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -28,6 +31,17 @@ public class MainWindow {
     public RadioButton productSeedRadio;
     public RadioButton productToolRadio;
 
+    private EntityManagerFactory entityManagerFactory;
+    private User user;
+
+    private HibernateShop hibernateShop;
+
+    //Pass the entity manager object and user from a previous form
+    public void setData(EntityManagerFactory entityManagerFactory, User user) {
+        this.entityManagerFactory = entityManagerFactory;
+        this.user = user;
+        this.hibernateShop = new HibernateShop(entityManagerFactory);
+    }
 
     public void buyItems() {
         Pane pane = new Pane();
@@ -50,7 +64,9 @@ public class MainWindow {
                     productColourField.getText(),
                     productTypeField.getText());
             //insert to database
-            productAdminList.getItems().add(plant);
+            hibernateShop.create(plant);
+            //get from database and populate the list
+            productAdminList.getItems().addAll(hibernateShop.getAllRecords(Product.class));
         }
     }
 
@@ -61,9 +77,11 @@ public class MainWindow {
             product.setTitle(productTitleField.getText());
             //productDescriptionField.setText(plant.getDescription());
             plant.setDescription(productDescriptionField.getText());
+            hibernateShop.update(plant);
         }
     }
 
+    //Delete will require more attention
     public void deleteRecord() {
         Product product = productAdminList.getSelectionModel().getSelectedItem();
         productAdminList.getItems().remove(product);
@@ -87,7 +105,8 @@ public class MainWindow {
         Product product = productAdminList.getSelectionModel().getSelectedItem();
 
         if (product instanceof Plant) {
-            Plant plant = (Plant) product;
+            //Get the latest info from db
+            Plant plant = hibernateShop.getEntityById(Plant.class, product.getId());
             productTitleField.setText(plant.getTitle());
             productDescriptionField.setText(plant.getDescription());
         }

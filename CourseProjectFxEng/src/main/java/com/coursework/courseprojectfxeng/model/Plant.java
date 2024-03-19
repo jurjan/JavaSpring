@@ -1,12 +1,18 @@
 package com.coursework.courseprojectfxeng.model;
 
+import jakarta.persistence.Entity;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
 public final class Plant extends Product {
 
     private LocalDate pickDate;
@@ -28,6 +34,11 @@ public final class Plant extends Product {
         this.validTill = validTill;
         this.colour = colour;
         this.type = type;
+    }
+
+    public Plant(int id, String title, String description, int qty, float weight, LocalDate plantDate) {
+        super(id, title, description, qty, weight);
+        this.plantDate = plantDate;
     }
 
     @Override
