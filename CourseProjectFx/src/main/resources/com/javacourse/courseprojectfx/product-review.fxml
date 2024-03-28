@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javacourse.courseprojectfx.fxControllers.ProductReview">
+    <children>
+        <ListView fx:id="productListField" layoutX="14.0" layoutY="20.0" onMouseClicked="#loadReviews" prefHeight="364.0" prefWidth="219.0">
+            <contextMenu>
+                <ContextMenu>
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#previewProduct" text="Preview product" />
+                        <MenuItem mnemonicParsing="false" onAction="#addReview" text="Add review" />
+                    </items>
+                </ContextMenu>
+            </contextMenu>
+        </ListView>
+        <TreeView fx:id="commentTreeField" layoutX="251.0" layoutY="20.0" prefHeight="358.0" prefWidth="323.0">
+         <contextMenu>
+            <ContextMenu>
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#updateComment" text="update comment" />
+                <MenuItem mnemonicParsing="false" onAction="#reply" text="reply" />
+                <MenuItem mnemonicParsing="false" onAction="#delete" text="delete" />
+              </items>
+            </ContextMenu>
+         </contextMenu></TreeView>
+    </children>
+</AnchorPane>

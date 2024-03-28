@@ -14,76 +14,92 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="497.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javacourse.courseprojectfx.fxControllers.MainWindow">
-   <children>
-      <TabPane prefHeight="497.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <tabs>
-          <Tab fx:id="shopTab" text="Shop">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <ListView fx:id="shopProducts" layoutX="14.0" layoutY="14.0" prefHeight="339.0" prefWidth="218.0" />
-                        <ListView layoutX="250.0" layoutY="14.0" prefHeight="179.0" prefWidth="335.0" />
-                        <Button layoutX="527.0" layoutY="212.0" mnemonicParsing="false" onAction="#buyItems" prefHeight="26.0" prefWidth="55.0" text="Buy" />
-                     </children>
-                  </AnchorPane>
-            </content>
-          </Tab>
-          <Tab text="Products">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <ListView fx:id="productAdminList" layoutX="14.0" layoutY="14.0" onMouseClicked="#loadProductData" prefHeight="341.0" prefWidth="210.0" />
-                        <Button layoutX="249.0" layoutY="355.0" mnemonicParsing="false" onAction="#createRecord" text="Add" />
-                        <Button layoutX="357.0" layoutY="355.0" mnemonicParsing="false" onAction="#updateRecord" text="Update" />
-                        <Button layoutX="481.0" layoutY="355.0" mnemonicParsing="false" onAction="#deleteRecord" text="Delete" />
-                        <TextField fx:id="productTitleField" layoutX="232.0" layoutY="43.0" promptText="Title" />
-                        <TextArea fx:id="productDescriptionField" layoutX="232.0" layoutY="78.0" prefHeight="154.0" prefWidth="149.0" promptText="Description" />
-                        <TextField fx:id="productQuantityField" layoutX="232.0" layoutY="242.0" promptText="Quantity" />
-                        <TextField fx:id="productWeightField" layoutX="232.0" layoutY="277.0" promptText="Weight" />
-                        <DatePicker fx:id="productDatePickField" layoutX="399.0" layoutY="43.0" promptText="date pick" />
-                        <DatePicker fx:id="productPlantDateField" layoutX="399.0" layoutY="78.0" promptText="plant date" />
-                        <DatePicker fx:id="productValidTillField" layoutX="399.0" layoutY="113.0" promptText="valid till" />
-                        <TextField fx:id="productColourField" layoutX="399.0" layoutY="143.0" promptText="colour " />
-                        <TextField fx:id="productTypeField" layoutX="399.0" layoutY="176.0" promptText="type" />
-                        <TextField fx:id="productFarmField" layoutX="399.0" layoutY="202.0" promptText="farm" />
-                        <DatePicker fx:id="productSeedPickDate" layoutX="399.0" layoutY="230.0" promptText="seed pick date" />
-                        <ComboBox fx:id="seedTypeField" layoutX="400.0" layoutY="265.0" prefHeight="25.0" prefWidth="172.0" />
-                        <TextField fx:id="productManufacturerField" layoutX="399.0" layoutY="302.0" promptText="manufacturer" />
-                        <RadioButton fx:id="productPlantRadio" layoutX="232.0" layoutY="14.0" mnemonicParsing="false" onAction="#disableFields" text="Plant">
-                           <toggleGroup>
-                              <ToggleGroup fx:id="productType" />
-                           </toggleGroup>
-                        </RadioButton>
-                        <RadioButton fx:id="productSeedRadio" layoutX="349.0" layoutY="14.0" mnemonicParsing="false" onAction="#disableFields" text="Seed" toggleGroup="$productType" />
-                        <RadioButton fx:id="productToolRadio" layoutX="474.0" layoutY="14.0" mnemonicParsing="false" onAction="#disableFields" text="Tool" toggleGroup="$productType" />
-                     </children></AnchorPane>
-            </content>
-          </Tab>
-            <Tab text="Users">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <TableView prefHeight="373.0" prefWidth="600.0">
-                          <columns>
-                            <TableColumn prefWidth="75.0" text="C1" />
-                            <TableColumn prefWidth="75.0" text="C2" />
-                          </columns>
-                        </TableView>
-                     </children></AnchorPane>
-              </content>
-            </Tab>
-            <Tab text="Orders">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-              </content>
-            </Tab>
-            <Tab text="Warehouses">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-              </content>
-            </Tab>
-        </tabs>
-      </TabPane>
-   </children>
+<AnchorPane prefHeight="497.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javacourse.courseprojectfx.fxControllers.MainWindow">
+    <children>
+        <TabPane fx:id="tabPane" prefHeight="497.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <tabs>
+                <Tab fx:id="shopTab" text="Shop">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <ListView fx:id="shopProducts" layoutX="14.0" layoutY="14.0" prefHeight="339.0" prefWidth="218.0" />
+                                <ListView fx:id="myCartItems" layoutX="250.0" layoutY="14.0" prefHeight="179.0" prefWidth="335.0" />
+                                <Button layoutX="489.0" layoutY="212.0" mnemonicParsing="false" onAction="#buyItems" prefHeight="26.0" prefWidth="93.0" styleClass="btn-custom" stylesheets="@styles/styles.css" text="Buy" />
+                                <Button layoutX="14.0" layoutY="368.0" mnemonicParsing="false" onAction="#loadProductReviewForm" styleClass="btn-custom" stylesheets="@styles/styles.css" text="Leave Review" />
+                        <Button layoutX="250.0" layoutY="213.0" mnemonicParsing="false" onAction="#addToCart" styleClass="btn-custom" stylesheets="@styles/styles.css" text="Add to Cart" />
+                        <Button layoutX="352.0" layoutY="213.0" mnemonicParsing="false" onAction="#removeFromCart" styleClass="btn-custom" stylesheets="@styles/styles.css" text="Remove from Cart" />
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab fx:id="productsTab" text="Products">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <ListView fx:id="productAdminList" layoutX="14.0" layoutY="14.0" onMouseClicked="#loadProductData" prefHeight="341.0" prefWidth="210.0" />
+                                <Button layoutX="249.0" layoutY="355.0" mnemonicParsing="false" onAction="#createRecord" styleClass="btn-custom" stylesheets="@styles/styles.css" text="Add" />
+                                <Button layoutX="357.0" layoutY="355.0" mnemonicParsing="false" onAction="#updateRecord" text="Update" />
+                                <Button layoutX="481.0" layoutY="355.0" mnemonicParsing="false" onAction="#deleteRecord" text="Delete" />
+                                <TextField fx:id="productTitleField" layoutX="232.0" layoutY="43.0" promptText="Title" />
+                                <TextArea fx:id="productDescriptionField" layoutX="232.0" layoutY="78.0" prefHeight="154.0" prefWidth="149.0" promptText="Description" />
+                                <TextField fx:id="productQuantityField" layoutX="232.0" layoutY="242.0" promptText="Quantity" />
+                                <TextField fx:id="productWeightField" layoutX="232.0" layoutY="277.0" promptText="Weight" />
+                                <DatePicker fx:id="productDatePickField" layoutX="399.0" layoutY="43.0" promptText="date pick" />
+                                <DatePicker fx:id="productPlantDateField" layoutX="399.0" layoutY="78.0" promptText="plant date" />
+                                <DatePicker fx:id="productValidTillField" layoutX="399.0" layoutY="113.0" promptText="valid till" />
+                                <TextField fx:id="productColourField" layoutX="399.0" layoutY="143.0" promptText="colour " />
+                                <TextField fx:id="productTypeField" layoutX="399.0" layoutY="176.0" promptText="type" />
+                                <TextField fx:id="productFarmField" layoutX="399.0" layoutY="202.0" promptText="farm" />
+                                <DatePicker fx:id="productSeedPickDate" layoutX="399.0" layoutY="230.0" promptText="seed pick date" />
+                                <ComboBox fx:id="seedTypeField" layoutX="400.0" layoutY="265.0" prefHeight="25.0" prefWidth="172.0" />
+                                <TextField fx:id="productManufacturerField" layoutX="399.0" layoutY="302.0" promptText="manufacturer" />
+                                <RadioButton fx:id="productPlantRadio" layoutX="232.0" layoutY="14.0" mnemonicParsing="false" onAction="#disableFields" text="Plant">
+                                    <toggleGroup>
+                                        <ToggleGroup fx:id="productType" />
+                                    </toggleGroup>
+                                </RadioButton>
+                                <RadioButton fx:id="productSeedRadio" layoutX="349.0" layoutY="14.0" mnemonicParsing="false" onAction="#disableFields" text="Seed" toggleGroup="$productType" />
+                                <RadioButton fx:id="productToolRadio" layoutX="474.0" layoutY="14.0" mnemonicParsing="false" onAction="#disableFields" text="Tool" toggleGroup="$productType" />
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab fx:id="usersTab" text="Users">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <TableView fx:id="managerTable" prefHeight="204.0" prefWidth="600.0">
+                                    <columns>
+                                        <TableColumn fx:id="managerColId" prefWidth="75.0" text="Id" />
+                                        <TableColumn fx:id="managerColLogin" prefWidth="75.0" text="Login" />
+                                        <TableColumn fx:id="managerColName" prefWidth="75.0" text="Name" />
+                                        <TableColumn prefWidth="75.0" text="Surname" />
+                                        <TableColumn fx:id="dummyCol" prefWidth="75.0" text="Action" />
+                                    </columns>
+                                </TableView>
+                                <TableView fx:id="customerTable" layoutY="223.0" prefHeight="247.0" prefWidth="600.0">
+                                    <columns>
+                                        <TableColumn prefWidth="75.0" text="C1" />
+                                        <TableColumn prefWidth="75.0" text="C2" />
+                                        <TableColumn prefWidth="75.0" text="Column X" />
+                                        <TableColumn prefWidth="75.0" text="Column X" />
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab fx:id="ordersTab" text="Orders">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                </Tab>
+                <Tab fx:id="warehousesTab" text="Warehouses">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
 </AnchorPane>
